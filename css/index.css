@@ -6,8 +6,17 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: rgb(47, 45, 45);
+    color: white;
 }
 
+.content, .item, label{
+    color: white !important; 
+}
+
+.active{
+    border-color: orange !important;
+}
 .container {
     max-width: 700px;
     margin: 0 auto;
@@ -38,4 +47,16 @@ html, body {
 }
 .ui.toggle.checkbox label:hover::before {
   background-color: #CACBCD !important;
+}
+
+#downloadButton:hover{
+    background-color: orange;
+}
+
+.ui button:hover{
+    background-color: orange !important;
+}
+
+.checkbox-txt{
+    color: black !important;
 }
