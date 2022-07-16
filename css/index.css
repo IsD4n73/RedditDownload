@@ -1,0 +1,41 @@
+html {
+    font-size: 100%;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 50px 30px 50px 30px;
+    position: relative;
+}
+
+.form, #newsBox {
+    margin-top: 30px;
+}
+
+#subredditOrUserButtons {
+    margin-bottom: 10px;
+}
+
+#downloadButton {
+    margin-top: 35px;
+    margin-bottom: 30px;
+}
+
+#unknownNameErrorBox, #noImagesFoundWarningBox, #downloadingInfoBox, #processingInfoBox {
+    display: none;
+}
+
+/* semantic ui overrides */
+.ui.toggle.checkbox label::before {
+    background: #E0E1E2 !important;
+}
+.ui.toggle.checkbox label:hover::before {
+  background-color: #CACBCD !important;
+}

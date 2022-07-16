@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Lets you download all images, videos and files from subreddits and users.">
+
+    <title>Reddit Downloader</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1GBFRZWDE5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1GBFRZWDE5');
+    </script>
+
+    <link rel="stylesheet" href="libs/semantic-ui/semantic.min.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+</head>
+<body>
+    <div class="container">
+        <h2 class="ui center aligned header">
+            <img class="ui image" src="https://avatars.githubusercontent.com/u/30738421">
+            <div class="content">
+                Reddit Downloader
+            </div>
+        </h2>
+
+        <div class="ui tiny blue message" id="newsBox">
+            <i class="close icon"></i>
+            <h2 class="ui medium header">
+                <div class="content">
+                    Changelog
+                    <div class="sub header">November 6, 2021</div>
+                </div>
+            </h2>
+            <p>
+                - Added support for downloading videos/gifs from posts linking to Gfycat<br>
+                - Added an option to the Naming tab for prepending the post number to file names<br>
+                - Added support for downloading content from crossposts
+            </p>
+        </div>
+
+        <div class="ui form">
+            <div class="field">
+                <div class="two ui fluid small buttons" id="subredditOrUserButtons">
+                    <!-- data-target values from targets enum in JS -->
+                    <button class="ui button active" data-target="0">Subreddit</button>
+                    <div class="or"></div>
+                    <button class="ui button" data-target="1">User</button>
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="targetNameInput">Subreddit Name</label>
+                    <input id="targetNameInput" type="text">
+                </div>
+                <div class="field">
+                    <label for="sectionInput">Section</label>
+                    <select class="ui search dropdown" id="sectionInput">
+                        <option value="hot">Hot</option>
+                        <option value="new">New</option>
+                        <option value="top-all">Top (all)</option>
+                        <option value="top-year">Top (year)</option>
+                        <option value="top-month">Top (month)</option>
+                        <option value="top-week">Top (week)</option>
+                        <option value="top-day">Top (day)</option>
+                        <option value="top-hour">Top (hour)</option>
+                        <option value="rising">Rising</option>
+                        <option value="controversial">Controversial</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui pointing secondary mini menu">
+                    <a class="item active" data-tab="first">Types</a>
+                    <a class="item" data-tab="second">Amount</a>
+                    <a class="item" data-tab="third">Naming</a>
+                    <a class="item" data-tab="fourth">Filters</a>
+                    <a class="item" data-tab="fifth">Misc</a>
+                </div>
+                <div class="ui tab active" data-tab="first">
+                    <div class="two fields">
+                        <div class="field">
+                            <div class="ui segment">
+                                <div class="field">
+                                    <div class="ui toggle checkbox">
+                                        <input class="hidden" id="includeImagesInput" type="checkbox" checked>
+                                        <label>Images</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui segment">
+                                <div class="field">
+                                    <div class="ui toggle checkbox">
+                                        <input class="hidden" id="includeVideosInput" type="checkbox" checked>
+                                        <label>Videos</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="two fields">
+                        <div class="field">
+                            <div class="ui segment">
+                                <div class="field">
+                                    <div class="ui toggle checkbox">
+                                        <input class="hidden" id="includeGifsInput" type="checkbox">
+                                        <label>Gifs</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui segment">
+                                <div class="field">
+                                    <div class="ui toggle checkbox">
+                                        <input class="hidden" id="includeOthersInput" type="checkbox">
+                                        <label>Files</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="field">
+                        <div class="ui segment">
+                            <div class="field">
+                                <div class="ui toggle checkbox">
+                                    <input class="hidden" id="includeNonRedditInput" type="checkbox" checked>
+                                    <label>Imgur and Gfycat content</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui tab" data-tab="second">
+                    <div class="field">
+                        <label for="downloadAmountInput">Posts*</label>
+                        <input id="downloadAmountInput" type="number" step="5" min="5" value="20">
+                    </div>
+
+                    <div class="field">
+                        <small>* The maximum number of posts to download items from. The amount of downloaded and zipped items often exceeds the amount specified here, since posts can have more than one downloadable item. </small>
+                    </div>
+                </div>
+                <div class="ui tab" data-tab="third">
+                    <div class="field">
+                        <label for="nameFormatInput">Name Items By*</label>
+                        <select class="ui search dropdown" id="nameFormatInput">
+                            <option value="post-title">Post Title</option>
+                            <option value="post-id">Post ID</option>
+                            <option value="file-name">Downloaded File Name</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <small>* Items downloaded from crossposts will be named as if the original post was downloaded.</small>
+                    </div>
+        
+                    <div class="field">
+                        <div class="ui segment">
+                            <div class="ui toggle checkbox">
+                                <input class="hidden" id="prependOrderIndexInput" type="checkbox" checked>
+                                <label>Number downloads according to the order of posts<br><small>E.g. <b>0_</b>neite.png, <b>3_</b>bob.png, #<b>0</b> being the first post and #<b>1</b>, #<b>2</b> having no downloadable items</small></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui tab" data-tab="fourth">
+                    <div class="field">
+                        <label for="searchFilterInput">Search Text</label>
+                        <input id="searchFilterInput" type="text">
+                    </div>
+        
+                    <div class="ui segment">
+                        <div class="field">
+                            <div class="ui toggle checkbox">
+                                <input class="hidden" id="restrictByScoreInput" type="checkbox">
+                                <label>Restrict downloads by post score</label>
+                            </div>
+                        </div>
+                        <div class="two fields">
+                            <div class="field">
+                                <select class="ui search disabled dropdown" id="restrictByScoreTypeInput">
+                                    <option value="ge">Greater Than or Equal To</option>
+                                    <option value="le">Less Than or Equal To</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <input id="restrictByScoreValueInput" type="number" min="0" value="100" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui tab" data-tab="fifth">
+                    <div class="ui segment">
+                        <div class="field">
+                            <div class="ui toggle checkbox">
+                                <input class="hidden" id="includeAsLinkInput" type="checkbox">
+                                <label>Include item as link if it couldn't be downloaded</label>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="ui segment">
+                        <div class="field">
+                            <div class="ui toggle checkbox">
+                                <input class="hidden" id="includeNsfwInput" type="checkbox">
+                                <label>Include material marked as NSFW (Not Safe For Work)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="fluid ui button" id="downloadButton">Download</button>
+        </div>
+
+        <div class="ui negative message" id="unknownNameErrorBox">
+            <div class="header">Whoops!</div>
+            <p>It appears that there's no <span class="downloadTypeText"></span> called <b class="targetNameText"></b>.</p>
+        </div>
+
+        <div class="ui warning message" id="noImagesFoundWarningBox">
+            <div class="header">Whoops!</div>
+            <p>It appears that the <span class="downloadTypeText"></span> <b class="targetNameText"></b> doesn't have any content that matches your search query.</p>
+        </div>
+
+        <div class="ui message" id="downloadingInfoBox">
+            <div class="header">Downloading</div>
+            <p>You've downloaded <b id="downloadedCountText"></b> of <b id="toDownloadCountText"></b> items so far (<b id="downloadedSizeText"></b> MiB).</p>
+            <button class="fluid ui basic button" id="cancelDownloadButton">Cancel</button>
+        </div>
+
+        <div class="ui positive message" id="processingInfoBox">
+            <div class="header">Processing</div>
+            <p>Your downloaded items are being made into a ZIP file. This can take a while, please wait until a file saving prompt appears.</p>
+            <p>Total progress: <b id="zippingProgressText">0</b><b>%</b></p>
+            <p>Current file name: <b id="zippingFileNameText">N/A</b></p>
+        </div>
+    </div>
+
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/semantic-ui/semantic.min.js"></script> <!-- depends on jQuery -->
+    <script src="libs/jszip.min.js"></script>
+    <script src="libs/FileSaver.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
