@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Lets you download all images, videos and files from subreddits and users.">
 
-    <title>Reddit Downloader</title>
+    <title>Reddit Downloader - IT</title>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1GBFRZWDE5"></script>
     <script>
@@ -25,11 +25,11 @@
         <h2 class="ui center aligned header">
             <img class="ui image" src="https://avatars.githubusercontent.com/u/30738421">
             <div class="content">
-                Reddit Downloader
+                Reddit Downloader by D4n73
             </div>
         </h2>
 
-        <div class="ui tiny blue message" id="newsBox">
+        <!-- <div class="ui tiny blue message" id="newsBox">
             <i class="close icon"></i>
             <h2 class="ui medium header">
                 <div class="content">
@@ -42,7 +42,7 @@
                 - Added an option to the Naming tab for prepending the post number to file names<br>
                 - Added support for downloading content from crossposts
             </p>
-        </div>
+        </div> -->
 
         <div class="ui form">
             <div class="field">
@@ -56,11 +56,11 @@
 
             <div class="two fields">
                 <div class="field">
-                    <label for="targetNameInput">Subreddit Name</label>
+                    <label for="targetNameInput">Nome Subreddit</label>
                     <input id="targetNameInput" type="text">
                 </div>
                 <div class="field">
-                    <label for="sectionInput">Section</label>
+                    <label for="sectionInput">Sezione</label>
                     <select class="ui search dropdown" id="sectionInput">
                         <option value="hot">Hot</option>
                         <option value="new">New</option>
@@ -78,11 +78,11 @@
 
             <div class="field">
                 <div class="ui pointing secondary mini menu">
-                    <a class="item active" data-tab="first">Types</a>
-                    <a class="item" data-tab="second">Amount</a>
-                    <a class="item" data-tab="third">Naming</a>
-                    <a class="item" data-tab="fourth">Filters</a>
-                    <a class="item" data-tab="fifth">Misc</a>
+                    <a class="item active" data-tab="first">Tipo</a>
+                    <a class="item" data-tab="second">Numero</a>
+                    <a class="item" data-tab="third">Nomi</a>
+                    <a class="item" data-tab="fourth">Filtri</a>
+                    <a class="item" data-tab="fifth">Varie</a>
                 </div>
                 <div class="ui tab active" data-tab="first">
                     <div class="two fields">
@@ -91,7 +91,7 @@
                                 <div class="field">
                                     <div class="ui toggle checkbox">
                                         <input class="hidden" id="includeImagesInput" type="checkbox" checked>
-                                        <label>Images</label>
+                                        <label>Immagini</label>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
                                 <div class="field">
                                     <div class="ui toggle checkbox">
                                         <input class="hidden" id="includeVideosInput" type="checkbox" checked>
-                                        <label>Videos</label>
+                                        <label>Video</label>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                                 <div class="field">
                                     <div class="ui toggle checkbox">
                                         <input class="hidden" id="includeGifsInput" type="checkbox">
-                                        <label>Gifs</label>
+                                        <label>Gif</label>
                                     </div>
                                 </div>
                             </div>
@@ -124,7 +124,7 @@
                                 <div class="field">
                                     <div class="ui toggle checkbox">
                                         <input class="hidden" id="includeOthersInput" type="checkbox">
-                                        <label>Files</label>
+                                        <label>File</label>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
                             <div class="field">
                                 <div class="ui toggle checkbox">
                                     <input class="hidden" id="includeNonRedditInput" type="checkbox" checked>
-                                    <label>Imgur and Gfycat content</label>
+                                    <label>Contenuti Imgur e Gfycat</label>
                                 </div>
                             </div>
                         </div>
@@ -144,40 +144,40 @@
                 </div>
                 <div class="ui tab" data-tab="second">
                     <div class="field">
-                        <label for="downloadAmountInput">Posts*</label>
+                        <label for="downloadAmountInput">N Post*</label>
                         <input id="downloadAmountInput" type="number" step="5" min="5" value="20">
                     </div>
 
                     <div class="field">
-                        <small>* The maximum number of posts to download items from. The amount of downloaded and zipped items often exceeds the amount specified here, since posts can have more than one downloadable item. </small>
+                        <small>* Il numero massimo di post da scaricare. La quantità di elementi scaricati e compressi spesso supera la quantità specificata qui, poiché i post possono avere più di un elemento scaricabile.</small>
                     </div>
                 </div>
                 <div class="ui tab" data-tab="third">
                     <div class="field">
-                        <label for="nameFormatInput">Name Items By*</label>
+                        <label for="nameFormatInput">Rinomina Per *</label>
                         <select class="ui search dropdown" id="nameFormatInput">
-                            <option value="post-title">Post Title</option>
-                            <option value="post-id">Post ID</option>
-                            <option value="file-name">Downloaded File Name</option>
+                            <option value="post-title">Titolo Post</option>
+                            <option value="post-id">ID Post</option>
+                            <option value="file-name">Nome del File Scaricato</option>
                         </select>
                     </div>
 
                     <div class="field">
-                        <small>* Items downloaded from crossposts will be named as if the original post was downloaded.</small>
+                        <small>* Gli elementi scaricati dai crosspost verranno nominati come se il post originale fosse stato gia scaricato.</small>
                     </div>
         
                     <div class="field">
                         <div class="ui segment">
                             <div class="ui toggle checkbox">
                                 <input class="hidden" id="prependOrderIndexInput" type="checkbox" checked>
-                                <label>Number downloads according to the order of posts<br><small>E.g. <b>0_</b>neite.png, <b>3_</b>bob.png, #<b>0</b> being the first post and #<b>1</b>, #<b>2</b> having no downloadable items</small></label>
+                                <label>Numero di download in base all'ordine dei post<br><small>Es. <b>0_</b>foto.png, <b>3_</b>bob.png, #<b>0</b> essendo il primo post e #<b>1</b>, #<b>2</b> non avendo elementi scaricabili</small></label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="ui tab" data-tab="fourth">
                     <div class="field">
-                        <label for="searchFilterInput">Search Text</label>
+                        <label for="searchFilterInput">Ricerca Testo</label>
                         <input id="searchFilterInput" type="text">
                     </div>
         
@@ -185,14 +185,14 @@
                         <div class="field">
                             <div class="ui toggle checkbox">
                                 <input class="hidden" id="restrictByScoreInput" type="checkbox">
-                                <label>Restrict downloads by post score</label>
+                                <label>Limita i download in base al punteggio del post</label>
                             </div>
                         </div>
                         <div class="two fields">
                             <div class="field">
                                 <select class="ui search disabled dropdown" id="restrictByScoreTypeInput">
-                                    <option value="ge">Greater Than or Equal To</option>
-                                    <option value="le">Less Than or Equal To</option>
+                                    <option value="ge">Maggiore o uguale a</option>
+                                    <option value="le">Minore o uguale a</option>
                                 </select>
                             </div>
                             <div class="field">
@@ -206,7 +206,7 @@
                         <div class="field">
                             <div class="ui toggle checkbox">
                                 <input class="hidden" id="includeAsLinkInput" type="checkbox">
-                                <label>Include item as link if it couldn't be downloaded</label>
+                                <label>Includi l'elemento come link se non può essere scaricato</label>
                             </div>
                         </div>
                     </div>
@@ -215,37 +215,37 @@
                         <div class="field">
                             <div class="ui toggle checkbox">
                                 <input class="hidden" id="includeNsfwInput" type="checkbox">
-                                <label>Include material marked as NSFW (Not Safe For Work)</label>
+                                <label>Includere materiale contrassegnato come NSFW (Not Safe For Work)</label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <button class="fluid ui button" id="downloadButton">Download</button>
+            <button class="fluid ui button" id="downloadButton">Scarica</button>
         </div>
 
         <div class="ui negative message" id="unknownNameErrorBox">
             <div class="header">Whoops!</div>
-            <p>It appears that there's no <span class="downloadTypeText"></span> called <b class="targetNameText"></b>.</p>
+            <p>Sembra che non esiste nessun <span class="downloadTypeText"></span> chiamato <b class="targetNameText"></b>.</p>
         </div>
 
         <div class="ui warning message" id="noImagesFoundWarningBox">
             <div class="header">Whoops!</div>
-            <p>It appears that the <span class="downloadTypeText"></span> <b class="targetNameText"></b> doesn't have any content that matches your search query.</p>
+            <p>Sembra che <span class="downloadTypeText"></span> <b class="targetNameText"></b> non ha nessun post con i criteri di ricerca da te inseriti.</p>
         </div>
 
         <div class="ui message" id="downloadingInfoBox">
-            <div class="header">Downloading</div>
-            <p>You've downloaded <b id="downloadedCountText"></b> of <b id="toDownloadCountText"></b> items so far (<b id="downloadedSizeText"></b> MiB).</p>
+            <div class="header">In Download...</div>
+            <p>Hai scaricato <b id="downloadedCountText"></b> di <b id="toDownloadCountText"></b> post (<b id="downloadedSizeText"></b> MiB).</p>
             <button class="fluid ui basic button" id="cancelDownloadButton">Cancel</button>
         </div>
 
         <div class="ui positive message" id="processingInfoBox">
-            <div class="header">Processing</div>
-            <p>Your downloaded items are being made into a ZIP file. This can take a while, please wait until a file saving prompt appears.</p>
-            <p>Total progress: <b id="zippingProgressText">0</b><b>%</b></p>
-            <p>Current file name: <b id="zippingFileNameText">N/A</b></p>
+            <div class="header">In Lavorazione...</div>
+            <p>Gli elementi scaricati vengono trasformati in un file ZIP. L'operazione può richiedere del tempo, attendere finché non viene visualizzata la richiesta di salvataggio del file.</p>
+            <p>Progressi totali: <b id="zippingProgressText">0</b><b>%</b></p>
+            <p>Nome del file corrente: <b id="zippingFileNameText">N/A</b></p>
         </div>
     </div>
 
