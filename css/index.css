@@ -2,6 +2,10 @@ html {
     font-size: 100%;
 }
 
+*{
+    -webkit-tap-highlight-color: transparent;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -10,7 +14,7 @@ html, body {
     color: white;
 }
 
-.content, .item, label{
+.content, label, a.item{
     color: white !important; 
 }
 
@@ -58,5 +62,9 @@ html, body {
 }
 
 .checkbox-txt{
+    color: black !important;
+}
+
+.item{
     color: black !important;
 }
